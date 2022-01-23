@@ -1,0 +1,45 @@
+grammar org.xtext.lilypond.LilyPond with org.eclipse.xtext.common.Terminals
+
+generate lilyPond "http://www.xtext.org/lilypond/LilyPond"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+File:
+	{File} version=Version header=Header score=Score;
+
+Version:
+	{Version} '\\version' value=STRING;
+
+Header:
+	{Header} '\\header' '{' title=Title '}';
+
+Title:
+	{Title} 'title' '=' value=STRING;
+
+Score:
+	{Score} '\\score' '{' '<<' staff=Staff lyrics=Lyrics '>>' '}';
+
+Staff:
+	{Staff} '\\new' 'Staff' '{' key=Key time=Time absolute=Absolute '}';
+
+Key:
+	{Key} '\\key' 'c' '\\major';
+
+Time:
+	{Time} '\\time' '4/4';
+
+Absolute:
+	{Absolute} '\\absolute' '{' items+=Note* '}';
+
+Note:
+	{Note} name=NoteName octave=OctaveRep duration=INT;
+
+OctaveRep: {Quotes} value+=Quote* | {Commas} value+=Comma*;
+
+Quote returns ecore::EChar: '\'';
+Comma returns ecore::EChar: ',';
+
+enum NoteName: A = 'a' | B = 'b' | C = 'c' | D = 'd' | E = 'e' | F = 'f' | G = 'g';
+
+Lyrics: 
+	{Lyrics} '\\addlyrics' '{' syllables+=STRING* '}';

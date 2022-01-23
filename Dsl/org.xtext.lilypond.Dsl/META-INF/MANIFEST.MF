@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.xtext.lilypond.Dsl
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.lilypond.Dsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.xtext.lilypond.Dsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.xtext.lilypond.scoping,
+ org.xtext.lilypond.parser.antlr.internal,
+ org.xtext.lilypond.services,
+ org.xtext.lilypond.dsl,
+ org.xtext.lilypond.validation,
+ org.xtext.lilypond.dsl.util,
+ org.xtext.lilypond.generator,
+ org.xtext.lilypond.dsl.impl,
+ org.xtext.lilypond.parser.antlr,
+ org.xtext.lilypond,
+ org.xtext.lilypond.serializer
+Import-Package: org.apache.log4j

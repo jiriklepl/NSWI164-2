@@ -1,0 +1,24 @@
+grammar org.xtext.lilypond.Dsl with org.eclipse.xtext.common.Terminals
+
+generate dsl "http://www.xtext.org/lilypond/Dsl"
+
+File:
+	{File} phrases+=Phrase* song=Song phrases+=Phrase*;
+
+Phrase:
+	{Phrase} 'phrase' name=ID body=Body;
+
+Song:
+	{Song} 'song' name=STRING body=Body;
+
+Body:
+	{Body} '{' content+=Item* '}';
+
+Item:
+	{NoteItem} note=Note | {PhraseItem} '\\' phrase=ID;
+
+Note: {Note} name=NoteName octave=Octave? duration=INT syllable=STRING?;
+
+Octave: {Is} '+' value=INT | {Es} '-' value=INT;
+
+enum NoteName: A = 'a' | B = 'b' | C = 'c' | D = 'd' | E = 'e' | F = 'f' | G = 'g';
